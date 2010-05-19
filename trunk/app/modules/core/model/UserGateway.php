@@ -99,11 +99,12 @@ class Tomato_Modules_Core_Model_UserGateway extends Tomato_Core_Model_Gateway
 	{
 		$where[] = 'user_id = '.$this->_conn->quote($user->user_id);
 		$data = array(
-			'user_name' => $user->user_name,
 			'full_name' => $user->full_name,
-			'email' => $user->email,
-			'role_id' => $user->role_id,
+			'email' => $user->email
 		);
+		if(!empty($user->user_name)) $data['user_name'] = $user->user_name;
+		if(!empty($user->role_id)) $data['role_id'] = $user->role_id;
+		
 		if (null != $user->password && $user->password != '') {
 			$data['password'] = md5($user->password);
 		} 

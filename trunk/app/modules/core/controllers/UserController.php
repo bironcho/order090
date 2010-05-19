@@ -292,7 +292,7 @@ class Core_UserController extends Zend_Controller_Action
 				'password' => $password,
 				'full_name' => $fullname,
 				'email' => $email,
-				'is_active' => 0,
+				'is_active' => 1,
 				'created_date' => date('Y-m-d H:i:s'),
 				'logged_in_date' => null,
 				'is_online' => 0,
@@ -306,6 +306,9 @@ class Core_UserController extends Zend_Controller_Action
 					$this->view->translator('user_add_success')
 				);
 				//Login with new user
+				$auth = Zend_Auth::getInstance();
+				$adapter = new Tomato_Modules_Core_Services_Auth($username, $password);
+				$result = $auth->authenticate($adapter);
 				
 				$this->_redirect($this->view->baseUrl());
 			}
@@ -322,19 +325,17 @@ class Core_UserController extends Zend_Controller_Action
 		$userGateway->setDbConnection($conn);
 		
 		$user = $userGateway->getUserByIdentity();
-		$userId=$user->__get('user_id');
+		$userId	  =	$user->__get('user_id');
 		$user = $userGateway->getUserById($userId);
 		$this->view->assign('user', $user);
 	
 		if ($this->_request->isPost()) {
-			
+			$userId	  =	$user->__get('user_id');
 			$fullname = $this->_request->getPost('fullname');
-			$username = $this->_request->getPost('username');
 			$password = $this->_request->getPost('confirmPassword');
 			$email = $this->_request->getPost('email');
 			$user = new Tomato_Modules_Core_Model_User(array(
 				'user_id' => $userId,
-				'user_name' => $username,
 				'password' => $password,
 				'full_name' => $fullname,
 				'email' => $email
@@ -344,8 +345,9 @@ class Core_UserController extends Zend_Controller_Action
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
 					$this->view->translator('user_edit_success')
 				);
-				$this->_redirect($this->view->serverUrl().$this->view->url(array(), 'core_user_update'));
+				$this->_redirect($this->view->baseUrl());
 			}
 		}
+		
 	}
 }

@@ -105,7 +105,7 @@ class Core_AuthController extends Zend_Controller_Action
 				case Tomato_Modules_Core_Services_Auth::FAILURE:
 					$message = $this->view->translator('auth_login_failure');
 					$this->_helper->getHelper('FlashMessenger')->addMessage($message);
-					$this->_redirect($this->view->serverUrl().$this->view->url(array(), 'core_auth_login'));
+					$this->_redirect($this->view->serverUrl().$this->view->url(array(), 'core_auth_user_login'));
 					break;
 					
 				/**
@@ -114,7 +114,7 @@ class Core_AuthController extends Zend_Controller_Action
 				case Tomato_Modules_Core_Services_Auth::NOT_ACTIVE:
 					$this->_helper->getHelper('FlashMessenger')
 						->addMessage($this->view->translator('auth_login_user_not_activated'));
-					$this->_redirect($this->view->serverUrl().$this->view->url(array(), 'core_auth_login'));
+					$this->_redirect($this->view->serverUrl().$this->view->url(array(), 'core_auth_user_login'));
 					break;
 					
 				/**

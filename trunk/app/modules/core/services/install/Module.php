@@ -43,7 +43,9 @@ class Tomato_Modules_Core_Services_Install_Module
 	public function install($module) 
 	{
 		$file = TOMATO_APP_DIR.DS.'modules'.DS.$module.DS.'config'.DS.'about.xml';
+		
 		if (!file_exists($file)) {
+			Zend_Debug::dump($file); die('dsa');
 			return null;
 		}
 		

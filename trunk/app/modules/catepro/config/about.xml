@@ -1,0 +1,43 @@
+<!DOCTYPE module SYSTEM "http://schemas.tomatocms.com/dtd/module_about.dtd">
+<module>
+	<name>catepro</name>
+	<description langKey="about_category_description"><![CDATA[Manage categories]]></description>
+	<thumbnail></thumbnail>
+	<author>TomatoCMS Core Team</author>
+	<email>core@tomatocms.com</email>
+	<version>2.0.1</version>
+	<license>free</license>
+	
+	<!-- Required modules and libraries -->
+	<requires>
+	</requires>
+	
+	<!-- Install and uninstall scripts -->
+	<install>
+		<query><![CDATA[DROP TABLE IF EXISTS `###catepro`;]]></query>
+		<query><![CDATA[CREATE TABLE `###catepro` (
+  `category_id` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(100) NOT NULL,
+  `meta` text,
+  `left_id` int(11) NOT NULL,
+  `right_id` int(11) NOT NULL,
+  `num_views` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  `created_date` datetime DEFAULT NULL,
+  `modified_date` datetime DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`category_id`),
+  KEY `idx_left_right` (`left_id`,`right_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;]]></query>		
+	</install>
+	
+	<uninstall>
+		<query><![CDATA[DROP TABLE IF EXISTS `###catepro`;]]></query>
+	</uninstall>
+	
+	<admin>
+		<task langKey="dashboard_list_categories" link="/admin/catepro/list/" />
+		<task langKey="dashboard_add_category" link="/admin/catepro/add/" />
+	</admin>
+</module>

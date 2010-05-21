@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module SYSTEM "http://schemas.tomatocms.com/dtd/module_about.dtd">
+<module>
+	<name>supplier</name>
+	<description langKey="about_supplier_description"><![CDATA[Manage suppliers]]></description>
+	<thumbnail></thumbnail>
+	<author>vinhbk2000</author>
+	<email>vinhbk2000@gmail.com</email>
+	<version>1</version>
+	<license>free</license>
+	
+	<!-- Required modules and libraries -->
+	<requires>
+	</requires>
+	
+	<!-- Install and uninstall scripts -->
+	<install>
+		<query><![CDATA[DROP TABLE IF EXISTS `###supplier`;]]></query>
+		<query><![CDATA[CREATE TABLE `###supplier` (
+  `supplier_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` int(6) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(100) NOT NULL,
+  `meta` text,
+  `address` varchar(255),
+  `phone` varchar(50),
+  `email` varchar(255),
+  `hour_open` varchar(5),
+  `hour_close` varchar(5),
+  `description` text,
+  `content` mediumtext,
+  `icons` varchar(255) DEFAULT NULL,
+  `image_square` varchar(255) DEFAULT NULL,
+  `image_thumbnail` varchar(255) DEFAULT NULL,
+  `image_small` varchar(255) DEFAULT NULL,
+  `image_general` varchar(255) DEFAULT NULL,
+  `image_crop` varchar(255) DEFAULT NULL,
+  `image_medium` varchar(255) DEFAULT NULL,
+  `image_large` varchar(255) DEFAULT NULL,
+  `num_views` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '1',
+  `activate_date` datetime default NULL,
+  `created_date` datetime DEFAULT NULL,
+  `modified_date` datetime DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`supplier_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;]]></query>	
+	</install>
+	
+	<uninstall>
+		<query><![CDATA[DROP TABLE IF EXISTS `###supplier`;]]></query>
+	</uninstall>
+	
+	<admin>
+		<task langKey="dashboard_list_suppliers" link="/admin/supplier/list/" />
+		<task langKey="dashboard_add_supplier" link="/admin/supplier/add/" />
+	</admin>
+</module>

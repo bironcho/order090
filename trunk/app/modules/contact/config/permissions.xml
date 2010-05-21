@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE permissions SYSTEM "http://schemas.tomatocms.com/dtd/module_permission.dtd">
-<permissions>
-	<resource name="index" description="Manage contacts" langKey="permisson_contact">
-		<privilege name="list" description="View the list of contacts" langKey="permisson_contact_list" />
-		<privilege name="add" description="Add new contact" langKey="permisson_contact_add" />
-	</resource>
-</permissions>

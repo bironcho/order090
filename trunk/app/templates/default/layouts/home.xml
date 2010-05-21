@@ -2,5 +2,12 @@
 <!DOCTYPE layout SYSTEM "http://schemas.tomatocms.com/dtd/layout.dtd">
 <layout>
 	<container cols="12">
+		<widget module="supplier" name="newest">
+			<params>
+				<param name="limit">
+					<value><![CDATA[15]]></value>
+				</param>
+			</params>
+		</widget>
 	</container>
 </layout>

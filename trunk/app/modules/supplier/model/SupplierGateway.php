@@ -1,22 +1,4 @@
 <?php
-/**
- * TomatoCMS
- * 
- * LICENSE
- *
- * This source file is subject to the GNU GENERAL PUBLIC LICENSE Version 2 
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://www.gnu.org/licenses/gpl-2.0.txt
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@tomatocms.com so we can send you a copy immediately.
- * 
- * @copyright	Copyright (c) 2009-2010 TIG Corporation (http://www.tig.vn)
- * @license		http://www.gnu.org/licenses/gpl-2.0.txt GNU GENERAL PUBLIC LICENSE Version 2
- * @version 	$Id: SupplierGateway.php 1669 2010-03-23 04:48:06Z huuphuoc $
- */
-
 class Tomato_Modules_Supplier_Model_SupplierGateway extends Tomato_Core_Model_Gateway 
 {
 	/**
@@ -59,6 +41,8 @@ class Tomato_Modules_Supplier_Model_SupplierGateway extends Tomato_Core_Model_Ga
 					'email'			=> $supplier->email,
 					'hour_open'		=> $supplier->hour_open,
 					'hour_close'	=> $supplier->hour_close,
+					'category_id'	=> $supplier->category_id,
+					'image_general' => $supplier->image_general,
 					'created_date'	=> $supplier->created_date,
 					'user_id'		=> $supplier->user_id
 		);
@@ -73,7 +57,8 @@ class Tomato_Modules_Supplier_Model_SupplierGateway extends Tomato_Core_Model_Ga
 	public function update($supplier) 
 	{
 			$where[] = 'supplier_id = '.$this->_conn->quote($supplier->supplier_id);
-			$this->_conn->update($this->_prefix.'supplier', array(
+			
+			$data = array(
 					'name'		=> $supplier->name,
 					'slug' 		=> $supplier->slug,
 					'meta' 		=> $supplier->meta,
@@ -82,7 +67,13 @@ class Tomato_Modules_Supplier_Model_SupplierGateway extends Tomato_Core_Model_Ga
 					'email' 	=> $supplier->email,
 					'hour_open' => $supplier->hour_open,
 					'hour_close'=> $supplier->hour_close,
-				), $where);
+					'category_id'=> $supplier->category_id
+			);
+			if($supplier->image_general =='delImage')
+				$data['image_general'] = '';
+			elseif(!empty($supplier->image_general))
+				$data['image_general'] = $supplier->image_general;
+			$this->_conn->update($this->_prefix.'supplier', $data, $where);
 	}
 	
 	/**
@@ -94,18 +85,6 @@ class Tomato_Modules_Supplier_Model_SupplierGateway extends Tomato_Core_Model_Ga
 		if ($supplier != null) {
 			$where[] = 'supplier_id = '.$this->_conn->quote($supplier->supplier_id);
 			$this->_conn->delete($this->_prefix.'supplier', $where);
-			
-			$sql = 'UPDATE '.$this->_prefix.'supplier SET left_id = left_id - 1, right_id = right_id - 1'
-					.' WHERE left_id BETWEEN '.$supplier->left_id.' AND '.$supplier->right_id;
-			$this->_conn->query($sql);
-
-			$sql = 'UPDATE '.$this->_prefix.'supplier SET right_id = right_id - 2'
-					.' WHERE right_id > '.$this->_conn->quote($supplier->right_id);
-			$this->_conn->query($sql);
-			
-			$sql = 'UPDATE '.$this->_prefix.'supplier SET left_id = left_id - 2'
-					.' WHERE left_id > '.$this->_conn->quote($supplier->right_id);
-			$this->_conn->query($sql);
 		}
 	}
 	

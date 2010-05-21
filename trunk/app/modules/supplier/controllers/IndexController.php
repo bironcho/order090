@@ -35,7 +35,15 @@ class Supplier_IndexController extends Zend_Controller_Action
 	
 	public function addAction() 
 	{
+		$this->view->addHelperPath(TOMATO_APP_DIR.DS.'modules'.DS.'upload'.DS.'views'.DS.'helpers', 'Upload_View_Helper_');
 		$conn = Tomato_Core_Db_Connection::getMasterConnection();
+		
+		//Cate Product
+		$cateproGateway = new Tomato_Modules_Catepro_Model_CateproGateway();
+		$cateproGateway->setDbConnection($conn);
+		$categories = $cateproGateway->getCateproTree();
+		$this->view->assign('categories', $categories);
+		
 		$supplierGateway = new Tomato_Modules_Supplier_Model_SupplierGateway();
 		$supplierGateway->setDbConnection($conn);
 		
@@ -49,7 +57,8 @@ class Supplier_IndexController extends Zend_Controller_Action
 			$email = $this->_request->getPost('email');
 			$hour_open = $this->_request->getPost('hour_open');
 			$hour_close = $this->_request->getPost('hour_close');
-			
+			$category_id = $this->_request->getPost('category_id');
+			$image_general = $this->_request->getPost('fileImage');
 			$supplier = new Tomato_Modules_Supplier_Model_Supplier(array(
 				'name'			=> $name,
 				'slug'			=> $slug,
@@ -59,6 +68,8 @@ class Supplier_IndexController extends Zend_Controller_Action
 				'email'			=> $email,
 				'hour_open'		=> $hour_open,
 				'hour_close' 	=> $hour_close,
+				'category_id'	=> $category_id,
+				'image_general'	=> $image_general,
 				'created_date'	=> date('Y-m-d H:i:s'),
 				'user_id'		=> $user->user_id,
 			));
@@ -74,7 +85,16 @@ class Supplier_IndexController extends Zend_Controller_Action
 	
 	public function editAction() 
 	{
+		$this->view->addHelperPath(TOMATO_APP_DIR.DS.'modules'.DS.'upload'.DS.'views'.DS.'helpers', 'Upload_View_Helper_');
 		$conn = Tomato_Core_Db_Connection::getMasterConnection();
+		
+		//Cate Product
+		$cateproGateway = new Tomato_Modules_Catepro_Model_CateproGateway();
+		$cateproGateway->setDbConnection($conn);
+		$categories = $cateproGateway->getCateproTree();
+		$this->view->assign('categories', $categories);
+		
+		//Supplier
 		$supplierGateway = new Tomato_Modules_Supplier_Model_SupplierGateway();
 		$supplierGateway->setDbConnection($conn);
 		$id = $this->_request->getParam('supplier_id');
@@ -90,6 +110,8 @@ class Supplier_IndexController extends Zend_Controller_Action
 			$email = $this->_request->getPost('email');
 			$hour_open = $this->_request->getPost('hour_open');
 			$hour_close = $this->_request->getPost('hour_close');
+			$category_id = $this->_request->getPost('category_id');
+			$delImage = $this->_request->getPost('delImage');
 			$supplier->name = $name;
 			$supplier->slug = $slug;
 			$supplier->meta = $meta;
@@ -98,8 +120,15 @@ class Supplier_IndexController extends Zend_Controller_Action
 			$supplier->email = $email;
 			$supplier->hour_open = $hour_open;
 			$supplier->hour_close = $hour_close;
+			$supplier->category_id = $category_id;
 			$supplier->modified_date = date('Y-m-d H:i:s');
+			$supplier->image_general = $this->_request->getPost('fileImage');
+			if(!empty($delImage))
+			{
+				$supplier->image_general =  'delImage';
+			}
 			$supplierGateway->update($supplier);
+			
 			$this->_helper->getHelper('FlashMessenger')->addMessage(
 				$this->view->translator('supplier_edit_success')
 			);
@@ -152,6 +181,70 @@ class Supplier_IndexController extends Zend_Controller_Action
 			);
 			$this->_response->setBody(Zend_Json::encode($data));			
 		}
+	}
+	
+	/* ========== Front actions =========================================== */
+	public function viewAction() 
+	{
+		$conn = Tomato_Core_Db_Connection::getMasterConnection();
+		//Supplier
+		$supplierGateway = new Tomato_Modules_Supplier_Model_SupplierGateway();
+		$supplierGateway->setDbConnection($conn);
+		$id = $this->_request->getParam('supplier_id');
+		$supplier = $supplierGateway->getSupplierById($id);
+		$this->view->assign('supplier', $supplier);
+	}
+	    
+	public function cateAction() 
+	{
+		$conn = Tomato_Core_Db_Connection::getMasterConnection();
+		$supplierGateway = new Tomato_Modules_Supplier_Model_SupplierGateway();
+		$supplierGateway->setDbConnection($conn);
+		
+		//CatePro
+		$categoryId = $this->_request->getParam('category_id');
+		$cateproGateway = new Tomato_Modules_Catepro_Model_CateproGateway();
+		$cateproGateway->setDbConnection($conn);
+		$category = $cateproGateway->getCateproById($categoryId);	
+		$this->view->assign('category', $category);
+		
+		$perPage = 20;
+		$pageIndex = $this->_request->getParam('pageIndex');
+		if (null == $pageIndex || '' == $pageIndex) {
+			$pageIndex = 1;
+		}
+		$start = ($pageIndex - 1) * $perPage;
+		$this->view->assign('pageIndex', $pageIndex);
+		
+		//Supplier
+		$select = $conn->select()
+						->from(array('s' => Tomato_Core_Db_Connection::getDbPrefix().'supplier'), array('supplier_id','category_id','name'))
+						->where('s.category_id = ?', $categoryId)
+						->where('s.is_active = ?', 1)
+						->order('s.activate_date DESC')
+						->limit($perPage, $start);
+		$rs = $select->query()->fetchAll();
+		$suppliers = new Tomato_Core_Model_RecordSet($rs, $supplierGateway);
+		$this->view->assign('suppliers', $suppliers);
+		
+		//Pagging
+		$select = $conn
+				->select()
+				->from(array('s' => Tomato_Core_Db_Connection::getDbPrefix().'supplier'), array('num_suppliers' => 'COUNT(*)'))
+				->where('s.category_id = ?', $categoryId)
+				->where('s.is_active = ?', 1);
+		$row = $select->query()->fetch();
+		$numSuppliers =  $row->num_suppliers;
+		$paginator = new Zend_Paginator(new Tomato_Core_Utility_PaginatorAdapter($suppliers, $numSuppliers));
+		$paginator->setCurrentPageNumber($pageIndex);
+		$paginator->setItemCountPerPage($perPage);
+		$this->view->assign('paginator', $paginator);
+		$this->view->assign('paginatorOptions', array(
+		    'path' => $this->view->url(array(), 'supplier_index_list'),
+		    'itemLink' => 'page-%d',
+		));
+		$this->view->assign('numSuppliers', $numSuppliers);
+		
 	}
 }
 	

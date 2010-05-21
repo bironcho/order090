@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 20, 2010 at 06:30 PM
+-- Generation Time: May 21, 2010 at 05:08 PM
 -- Server version: 5.1.36
 -- PHP Version: 5.2.11
 
@@ -200,11 +200,10 @@ CREATE TABLE IF NOT EXISTS `catepro` (
 --
 
 INSERT INTO `catepro` (`category_id`, `name`, `slug`, `meta`, `left_id`, `right_id`, `num_views`, `is_active`, `created_date`, `modified_date`, `user_id`) VALUES
-(2, '1', '1', '1', 5, 6, NULL, 1, '2010-05-20 11:40:27', NULL, 1),
-(3, '1', '1', '1', 7, 10, NULL, 1, '2010-05-20 11:40:35', NULL, 1),
-(5, '56', '56', '56', 3, 4, NULL, 1, '2010-05-20 11:45:49', NULL, 1),
-(6, '12', '12', '12', 8, 9, NULL, 1, '2010-05-20 11:48:42', NULL, 1),
-(7, '11', '11', '11', 1, 2, NULL, 1, '2010-05-20 11:48:49', NULL, 1);
+(3, 'Catepro03', 'c', '1', 5, 8, NULL, 1, '2010-05-20 11:40:35', NULL, 1),
+(5, 'CatePro02', 'catepro02', '56', 3, 4, NULL, 1, '2010-05-20 11:45:49', NULL, 1),
+(6, 'Catepro03_01', 'catepro03-01', 'catepro03_01', 6, 7, NULL, 1, '2010-05-20 11:48:42', NULL, 1),
+(7, 'CatePro01', 'catepro01', '11', 1, 2, NULL, 1, '2010-05-20 11:48:49', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -713,11 +712,8 @@ CREATE TABLE IF NOT EXISTS `core_session` (
 --
 
 INSERT INTO `core_session` (`session_id`, `data`, `modified`, `lifetime`) VALUES
-('240nem88theoosgsjlno7m3cg0', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:2:"17";s:9:"user_name";s:7:"a122456";s:8:"password";s:32:"0580b0994b9bf26173572c3824cae5de";s:9:"full_name";s:7:"a123456";s:5:"email";s:17:"a122456@yahoo.com";s:9:"is_active";s:1:"1";s:12:"created_date";s:19:"2010-05-19 17:09:17";s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"2";s:9:"role_name";s:4:"user";}}}', 1274263760, 3600),
-('abhgf4f90g2i7onukd7f5u1b51', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:9:"full_name";s:13:"Administrator";s:5:"email";s:15:"admin@email.com";s:9:"is_active";s:1:"1";s:12:"created_date";N;s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"1";s:9:"role_name";s:5:"admin";}}}', 1274326042, 3600),
-('ec9m42ru1vhta6d2j65j2brnk2', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:9:"full_name";s:13:"Administrator";s:5:"email";s:15:"admin@email.com";s:9:"is_active";s:1:"1";s:12:"created_date";N;s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"1";s:9:"role_name";s:5:"admin";}}}', 1274327291, 3600),
-('eorv144gqbiu12qarcm4ljn517', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:9:"full_name";s:13:"Administrator";s:5:"email";s:15:"admin@email.com";s:9:"is_active";s:1:"1";s:12:"created_date";N;s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"1";s:9:"role_name";s:5:"admin";}}}', 1274252081, 3600),
-('g5l209rud46uqqoeiofrn31aj0', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:9:"full_name";s:13:"Administrator";s:5:"email";s:15:"admin@email.com";s:9:"is_active";s:1:"1";s:12:"created_date";N;s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"1";s:9:"role_name";s:5:"admin";}}}', 1274351093, 3600);
+('19fp5m48mab9q47i4o6il8ing1', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:9:"full_name";s:13:"Administrator";s:5:"email";s:15:"admin@email.com";s:9:"is_active";s:1:"1";s:12:"created_date";N;s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"1";s:9:"role_name";s:5:"admin";}}}', 1274432532, 3600),
+('1o3j1m447u3kkae54i1bmcmr61', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:9:"full_name";s:13:"Administrator";s:5:"email";s:15:"admin@email.com";s:9:"is_active";s:1:"1";s:12:"created_date";N;s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"1";s:9:"role_name";s:5:"admin";}}}', 1274429045, 3600);
 
 -- --------------------------------------------------------
 
@@ -797,7 +793,7 @@ CREATE TABLE IF NOT EXISTS `core_widget` (
   `version` varchar(20) DEFAULT NULL,
   `license` text,
   PRIMARY KEY (`widget_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `core_widget`
@@ -841,7 +837,8 @@ INSERT INTO `core_widget` (`widget_id`, `name`, `title`, `module`, `description`
 (35, 'mostviewed', 'Most viewed', 'news', 'Show the most viewed articles', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
 (36, 'latestcategory', 'Latest articles', 'news', 'Show the latest articles of given category', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
 (37, 'category', 'Category', 'news', 'List of categories and link to them', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
-(38, 'searchbox', 'Search Box', 'news', 'News search box', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.2', 'free');
+(38, 'searchbox', 'Search Box', 'news', 'News search box', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.2', 'free'),
+(39, 'newest', 'Newest suppliers', 'supplier', 'Show the newest suppliers', '', 'vinhbk2000', 'vinhbk2000@gmail.com', '1', 'free');
 
 -- --------------------------------------------------------
 
@@ -1242,6 +1239,7 @@ CREATE TABLE IF NOT EXISTS `poll_question` (
 
 CREATE TABLE IF NOT EXISTS `supplier` (
   `supplier_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` int(6) NOT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(100) NOT NULL,
   `meta` text,
@@ -1267,17 +1265,17 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `modified_date` datetime DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`supplier_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `supplier`
 --
 
-INSERT INTO `supplier` (`supplier_id`, `name`, `slug`, `meta`, `address`, `phone`, `email`, `hour_open`, `hour_close`, `description`, `content`, `icons`, `image_square`, `image_thumbnail`, `image_small`, `image_general`, `image_crop`, `image_medium`, `image_large`, `num_views`, `is_active`, `activate_date`, `created_date`, `modified_date`, `user_id`) VALUES
-(11, '2', '2', '2', '111', NULL, '1', '111', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2010-05-20 15:47:50', NULL, NULL, 1),
-(12, '11asdas', '1dasd', '11asdsa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2010-05-20 16:30:51', '2010-05-20 16:30:23', NULL, 1),
-(13, 'Supplier02', 'supplier02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2010-05-20 17:01:54', NULL, 1),
-(14, 'dsa1', 'dasdas1', NULL, 'dasd1', 'asdas1', 'dasdas1@yahoo.com', '00000', '00001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2010-05-20 17:03:19', NULL, 1);
+INSERT INTO `supplier` (`supplier_id`, `category_id`, `name`, `slug`, `meta`, `address`, `phone`, `email`, `hour_open`, `hour_close`, `description`, `content`, `icons`, `image_square`, `image_thumbnail`, `image_small`, `image_general`, `image_crop`, `image_medium`, `image_large`, `num_views`, `is_active`, `activate_date`, `created_date`, `modified_date`, `user_id`) VALUES
+(15, 5, 'Supplier02', 'supplier02', NULL, 'Supplier02', '123121', 'supplier02@yahoo.com', '08:00', '20:00', NULL, NULL, NULL, NULL, NULL, NULL, 'http://localhost.com:8080/zend/order090/src/upload/multimedia/admin/2010/05/4bf61092b0357.png', NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 09:16:30', NULL, 1),
+(18, 5, 'supplier04', 'supplier04', NULL, 'supplier04', '09090909', 'supplier04@yahoo.com', '09:00', '24:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 10:38:21', NULL, 1),
+(19, 7, 'supplier03', 'supplier03', NULL, 'supplier03', '090909090', 'supplier03@yahoo.com', '08:00', '22:00', NULL, NULL, NULL, NULL, NULL, NULL, 'http://localhost.com:8080/zend/order090/src/upload/multimedia/admin/2010/05/4bf60cc77ed9a.png', NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 10:39:54', NULL, 1),
+(20, 7, 'supplier01', 'supplier01', NULL, '235 QL1A P. Binh chieu', '0903684987', 'vinhbk2000@yahoo.com', '10:00', '22:00', NULL, NULL, NULL, NULL, NULL, NULL, 'http://localhost.com:8080/zend/order090/src/upload/multimedia/admin/2010/05/4bf610f232605.png', NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 11:49:55', NULL, 1);
 
 -- --------------------------------------------------------
 

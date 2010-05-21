@@ -85,23 +85,14 @@ $(document).ready(function() {
 		if (confirm('<?php echo $this->escape($this->translator('supplier_list_action_delete_confirm')); ?>')) {
 			$(this).html('').addClass('t_a_loading');
 			var id = $(this).attr('rel');
-			$.ajaxq('news_article', {
+			$.ajaxq('supplier_index_delete', {
 				type: 'POST',
 				url: '<?php echo $this->url(array(), 'supplier_index_delete'); ?>',
 				data: { id: id },
 				success: function(response) {
-					response = $.evalJSON(response);
-					$('#tsupplierRow_' + id).fadeOut('slow');
-					$('#tDialogContainer').html(sprintf('<?php echo addslashes($this->translator('supplier_list_delete_supplier_success')); ?>', response.title))
-					.dialog({
-						title: '<?php echo addslashes($this->translator('supplier_list_action_message')); ?>',
-				    	show: { effect: 'fade' },
-						open: function(event, ui) {
-							setTimeout(function() {
-								$('#' + event.target.id).dialog('option', 'hide', 'fade').dialog('destroy');
-							}, 3000);
-						}
-					});
+					if ('RESULT_OK' == response) {
+						$('#tsupplierRow_' + id).fadeOut('slow');
+					}
 				}
 			});
 		}

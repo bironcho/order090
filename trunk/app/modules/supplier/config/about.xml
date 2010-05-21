@@ -18,6 +18,7 @@
 		<query><![CDATA[DROP TABLE IF EXISTS `###supplier`;]]></query>
 		<query><![CDATA[CREATE TABLE `###supplier` (
   `supplier_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` int(6) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(100) NOT NULL,
   `meta` text,

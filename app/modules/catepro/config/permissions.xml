@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE permissions SYSTEM "http://schemas.tomatocms.com/dtd/module_permission.dtd">
+<permissions>
+	<resource name="index" description="Manage product categories" langKey="permisson_product_category">
+		<privilege name="list" description="View the list of product categories" langKey="permisson_product_category_list" />
+		<privilege name="add" description="Create new product category" langKey="permisson_product_category_add" />
+		<privilege name="edit" description="Edit a product category" langKey="permisson_product_category_edit" />
+		<privilege name="delete" description="Delete a product category" langKey="permisson_product_category_delete" />
+	</resource>
+</permissions>

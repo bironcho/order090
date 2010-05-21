@@ -1,0 +1,135 @@
+<?php 
+/**
+ * TomatoCMS
+ * 
+ * LICENSE
+ *
+ * This source file is subject to the GNU GENERAL PUBLIC LICENSE Version 2 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.gnu.org/licenses/gpl-2.0.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@tomatocms.com so we can send you a copy immediately.
+ * 
+ * @copyright	Copyright (c) 2009-2010 TIG Corporation (http://www.tig.vn)
+ * @license		http://www.gnu.org/licenses/gpl-2.0.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @version 	$Id: add.phtml 2020 2010-04-02 07:26:40Z huuphuoc $
+ */
+?>
+<?php 
+$this->headTitle($this->translator('supplier_add_page_title'));
+$this->headScript()->appendFile($this->APP_STATIC_SERVER.'/js/jquery.validate/jquery.validate.min.js');
+?>
+<div class="grid_12 t_a_breadcump">
+	<span><a href="<?php echo $this->url(array(), 'core_index_dashboard'); ?>"><?php echo $this->translator('menu_admin', 'core'); ?></a></span><span><a href="<?php echo $this->url(array(), 'supplier_index_list'); ?>"><?php echo $this->translator('supplier_list_breadcump'); ?></a></span><span><?php echo $this->translator('supplier_add_breadcump'); ?></span>	
+</div>
+
+<div class="grid_12">
+<?php echo $this->flashMessenger(); ?>
+</div>
+
+<form method="post" action="<?php echo $this->url(array(), 'supplier_index_add'); ?>" id="addSupplierForm" class="t_a_form">
+<div class="grid_12 t_a_bottom"><?php echo $this->translator('supplier_add_guide'); ?></div>
+<div class="grid_12 t_a_bottom">
+	<div class="clearfix t_a_bottom">
+		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_name'); ?>:</label></div>
+		<div class="grid_10 omega"><input type="text" id="name" name="name" style="width: 400px" /></div>
+	</div>
+	<div class="clearfix t_a_bottom">
+		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_slug'); ?>:</label></div>
+		<div class="grid_10 omega"><input type="text" id="slug" name="slug" style="width: 400px" /></div>
+	</div>
+	<div class="clearfix t_a_bottom">
+		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_address'); ?>:</label></div>
+		<div class="grid_10 omega"><input type="text" id="address" name="address" style="width: 400px" /></div>
+	</div>
+	<div class="clearfix t_a_bottom">
+		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_phone'); ?>:</label></div>
+		<div class="grid_10 omega"><input type="text" id="phone" name="phone" style="width: 400px" maxlength="50"/></div>
+	</div>
+	<div class="clearfix t_a_bottom">
+		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_email'); ?>:</label></div>
+		<div class="grid_10 omega"><input type="text" id="email" name="email" style="width: 400px" /></div>
+	</div>
+	<div class="clearfix t_a_bottom">
+		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_hour_open'); ?>:</label></div>
+		<div class="grid_10 omega"><input type="text" id="hour_open" name="hour_open" style="width: 400px" maxlength="5"/></div>
+	</div>
+	<div class="clearfix t_a_bottom">
+		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_hour_close'); ?>:</label></div>
+		<div class="grid_10 omega"><input type="text" id="hour_close" name="hour_close" style="width: 400px" maxlength="5" /></div>
+	</div>
+	<div class="clearfix t_a_bottom">
+		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_category'); ?>:</label></div>
+		<div class="grid_10 omega">
+			<select name="category_id" id="category_id">
+				<option value="">---</option>
+			<?php for ($i = 0; $i < count($this->categories); $i++) : ?>
+				<option value="<?php echo $this->categories[$i]->category_id; ?>">
+					<?php echo str_repeat('---', $this->categories[$i]->depth).$this->categories[$i]->name; ?>
+					</option>
+			<?php endfor; ?>
+			</select>
+		</div>
+	</div>
+	<div class="clearfix t_a_bottom">
+		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_image'); ?>:</label></div>
+		<div class="grid_10 omega"><input type="text" name="fileImage" id="fileImage" style="width: 400px" />
+		<br />
+		<?php echo $this->uploader('multimedia', 
+			array('extension' => '*.jpg;*.jpeg;*.png;*.gif', 'multi' => false, 'auto' => true, 'simUploadLimit' =>1, 'sizeLimit' => 1024 * 1024 * 5, 'thumbnails' => 'none'), 
+			array('onComplete' => 'onUploadCompleteFileImage')); 
+		?>
+	</div>
+	<div class="grid_10 prefix_2 alpha"><input type="submit" class="t_a_button" value="<?php echo $this->translator('supplier_add_save_button'); ?>" /></div>
+</div>
+</form>
+<script type="text/javascript">
+function onUploadCompleteFileImage(event, ID, fileObj, response, data) {
+	var res = $.evalJSON(response);
+	$('#fileImage').attr('value', res.original);
+};
+$(document).ready(function() {
+	$.validator.addMethod('slug', function(value) {
+		var regex = new RegExp(/^[a-z0-9\-]+$/);
+		if (value.match(regex)) {
+			return true;
+		} else {
+			return false;
+		}
+	}); 
+	$('#addSupplierForm').validate({
+		rules: {
+			name: {
+				required: true,
+		  		maxlength: 255
+			},
+			slug: {
+		  		required: true,
+		  		slug: true,
+		  		maxlength: 255
+			},
+			email: {
+				required: true,
+				email: true,
+			},
+	    },
+	    messages: {
+	    	name: {
+	        	required: "<?php echo $this->translator('supplier_name_required'); ?>",
+				maxlength: "<?php echo $this->translator('supplier_name_maxlength'); ?>"
+			},
+			slug: { 
+	        	required: "<?php echo $this->translator('supplier_slug_required'); ?>",
+	        	slug: "<?php echo $this->translator('supplier_slug_validate'); ?>",
+	        	maxlength: "<?php echo $this->translator('supplier_slug_maxlength'); ?>"
+	    	},
+			email: { 
+	        	required: "<?php echo $this->translator('user_email_required'); ?>",
+	        	email: "<?php echo $this->translator('user_email_invalid'); ?>",
+	    	}
+		}
+	});
+});
+</script>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 21, 2010 at 05:08 PM
+-- Generation Time: May 22, 2010 at 03:03 PM
 -- Server version: 5.1.36
 -- PHP Version: 5.2.11
 
@@ -231,15 +231,12 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `reply_to` int(11) DEFAULT '0',
   PRIMARY KEY (`comment_id`),
   KEY `idx_latest` (`page_url`,`is_active`,`ordering`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `comment`
 --
 
-INSERT INTO `comment` (`comment_id`, `title`, `content`, `full_name`, `web_site`, `email`, `user_id`, `user_name`, `page_url`, `ip`, `created_date`, `is_active`, `activate_date`, `path`, `ordering`, `depth`, `reply_to`) VALUES
-(1, 'Xin chao', '<p>Bai viet ok lem he he he!</p>', 'Lang tu', 'http://vietvbb.vn', 'asdksajdsa@gmail.com', NULL, NULL, '/news/article/view/6/7/', '113.22.34.167', '2010-03-25 04:25:27', 0, NULL, '1-', 1, 0, 0),
-(2, 'test', '<p>testddddddddddddddddjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj</p>', 'pong', 'Website', 'it_commer@hotmail.com', NULL, NULL, '/news/article/view/1/6/', '58.147.24.33', '2010-03-28 13:56:07', 0, NULL, '2-', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -254,17 +251,12 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `address` varchar(200) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   PRIMARY KEY (`contact_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `contact`
 --
 
-INSERT INTO `contact` (`contact_id`, `first_name`, `last_name`, `address`, `email`) VALUES
-(1, 'Vinh', 'Nguyen', '235 QL1A - P.Binh Chieu', 'vinhbk2000@gmail.com'),
-(2, 'Vinh', 'Nguyen', '235 QL1A - P.Binh Chieu', 'vinhbk2001@gmail.com'),
-(3, 'Vinh', 'Nguyen', '235 QL1A - P.Binh Chieu', 'vinhbk2002@gmail.com'),
-(4, 'Vinh', 'Nguyen', '235 QL1A - P.Binh Chieu', 'vinhbk2003@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -308,28 +300,28 @@ CREATE TABLE IF NOT EXISTS `core_module` (
   `version` varchar(20) DEFAULT NULL,
   `license` text,
   PRIMARY KEY (`module_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `core_module`
 --
 
 INSERT INTO `core_module` (`module_id`, `name`, `description`, `thumbnail`, `author`, `email`, `version`, `license`) VALUES
-(1, 'comment', 'Manage comments', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
 (2, 'utility', 'Provide utilities. Most of utility widgets belong to this module', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
-(3, 'ad', 'Manage banners', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
 (4, 'menu', 'Manage menus', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.2', 'free'),
 (5, 'upload', 'Upload file and manage uploaded files', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
-(6, 'poll', 'Manage polls', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
 (7, 'seo', 'Provide utilities which make your site is better for SEO', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.3', 'free'),
 (8, 'core', 'Core module. This module will be installed at the first time you install website', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
 (9, 'multimedia', 'Multimedia module: Manage photos and clips', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
 (10, 'tag', 'Manage tags', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.2', 'free'),
 (11, 'news', 'Manage articles', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
 (12, 'category', 'Manage categories', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
-(14, 'contact', 'Manage contacts', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.4', 'free'),
 (16, 'catepro', 'Manage categories', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
-(21, 'supplier', 'Manage suppliers', '', 'vinhbk2000', 'vinhbk2000@gmail.com', '1', 'free');
+(21, 'supplier', 'Manage suppliers', '', 'vinhbk2000', 'vinhbk2000@gmail.com', '1', 'free'),
+(22, 'poll', 'Manage polls', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
+(23, 'contact', 'Manage contacts', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.4', 'free'),
+(24, 'ad', 'Manage banners', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free'),
+(25, 'comment', 'Manage comments', '', 'TomatoCMS Core Team', 'core@tomatocms.com', '2.0.1', 'free');
 
 -- --------------------------------------------------------
 
@@ -712,8 +704,9 @@ CREATE TABLE IF NOT EXISTS `core_session` (
 --
 
 INSERT INTO `core_session` (`session_id`, `data`, `modified`, `lifetime`) VALUES
-('19fp5m48mab9q47i4o6il8ing1', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:9:"full_name";s:13:"Administrator";s:5:"email";s:15:"admin@email.com";s:9:"is_active";s:1:"1";s:12:"created_date";N;s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"1";s:9:"role_name";s:5:"admin";}}}', 1274432532, 3600),
-('1o3j1m447u3kkae54i1bmcmr61', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:9:"full_name";s:13:"Administrator";s:5:"email";s:15:"admin@email.com";s:9:"is_active";s:1:"1";s:12:"created_date";N;s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"1";s:9:"role_name";s:5:"admin";}}}', 1274429045, 3600);
+('19fp5m48mab9q47i4o6il8ing1', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:9:"full_name";s:13:"Administrator";s:5:"email";s:15:"admin@email.com";s:9:"is_active";s:1:"1";s:12:"created_date";N;s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"1";s:9:"role_name";s:5:"admin";}}}', 1274435284, 3600),
+('1o3j1m447u3kkae54i1bmcmr61', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:9:"full_name";s:13:"Administrator";s:5:"email";s:15:"admin@email.com";s:9:"is_active";s:1:"1";s:12:"created_date";N;s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"1";s:9:"role_name";s:5:"admin";}}}', 1274429045, 3600),
+('gnc93o5h6o542kg849lk5j6io4', 'Zend_Auth|a:1:{s:7:"storage";O:30:"Tomato_Modules_Core_Model_User":1:{s:14:"\0*\0_properties";a:11:{s:7:"user_id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:9:"full_name";s:13:"Administrator";s:5:"email";s:15:"admin@email.com";s:9:"is_active";s:1:"1";s:12:"created_date";N;s:14:"logged_in_date";N;s:9:"is_online";s:1:"0";s:7:"role_id";s:1:"1";s:9:"role_name";s:5:"admin";}}}', 1274505562, 3600);
 
 -- --------------------------------------------------------
 
@@ -760,7 +753,7 @@ CREATE TABLE IF NOT EXISTS `core_user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `core_user`
@@ -773,7 +766,8 @@ INSERT INTO `core_user` (`user_id`, `role_id`, `user_name`, `password`, `full_na
 (14, 0, '', 'c33367701511b4f6020ec61ded352059', 'a123456a', 'a123456@yahoo.com', 1, '2010-05-19 16:44:57', NULL, 0),
 (15, 2, '999999', '52c69e3a57331081823331c4e69d3f2e', '999999', '999999@yahoo.com', 1, '2010-05-19 16:45:37', NULL, 0),
 (16, 2, '111111', '96e79218965eb72c92a549dd5a330112', '111111', '111111@yahoo.com', 1, '2010-05-19 16:50:02', NULL, 0),
-(17, 2, 'a122456', '0580b0994b9bf26173572c3824cae5de', 'a123456', 'a122456@yahoo.com', 1, '2010-05-19 17:09:17', NULL, 0);
+(17, 2, 'a122456', '0580b0994b9bf26173572c3824cae5de', 'a123456', 'a122456@yahoo.com', 1, '2010-05-19 17:09:17', NULL, 0),
+(18, 2, 'vinhbk2000', '71d9c073d18b54caa85c287d05717a3b', 'vinh', 'vinhbk2000@yahoo.com', 1, '2010-05-21 16:27:33', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1272,10 +1266,10 @@ CREATE TABLE IF NOT EXISTS `supplier` (
 --
 
 INSERT INTO `supplier` (`supplier_id`, `category_id`, `name`, `slug`, `meta`, `address`, `phone`, `email`, `hour_open`, `hour_close`, `description`, `content`, `icons`, `image_square`, `image_thumbnail`, `image_small`, `image_general`, `image_crop`, `image_medium`, `image_large`, `num_views`, `is_active`, `activate_date`, `created_date`, `modified_date`, `user_id`) VALUES
-(15, 5, 'Supplier02', 'supplier02', NULL, 'Supplier02', '123121', 'supplier02@yahoo.com', '08:00', '20:00', NULL, NULL, NULL, NULL, NULL, NULL, 'http://localhost.com:8080/zend/order090/src/upload/multimedia/admin/2010/05/4bf61092b0357.png', NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 09:16:30', NULL, 1),
-(18, 5, 'supplier04', 'supplier04', NULL, 'supplier04', '09090909', 'supplier04@yahoo.com', '09:00', '24:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 10:38:21', NULL, 1),
-(19, 7, 'supplier03', 'supplier03', NULL, 'supplier03', '090909090', 'supplier03@yahoo.com', '08:00', '22:00', NULL, NULL, NULL, NULL, NULL, NULL, 'http://localhost.com:8080/zend/order090/src/upload/multimedia/admin/2010/05/4bf60cc77ed9a.png', NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 10:39:54', NULL, 1),
-(20, 7, 'supplier01', 'supplier01', NULL, '235 QL1A P. Binh chieu', '0903684987', 'vinhbk2000@yahoo.com', '10:00', '22:00', NULL, NULL, NULL, NULL, NULL, NULL, 'http://localhost.com:8080/zend/order090/src/upload/multimedia/admin/2010/05/4bf610f232605.png', NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 11:49:55', NULL, 1);
+(15, 5, 'Supplier02', 'supplier02', NULL, 'Heiligenboom 20 5066 CB Moergestel The Netherlands', '123121', 'supplier02@yahoo.com', '08:00', '20:00', NULL, NULL, NULL, NULL, NULL, NULL, 'http://localhost.com:8080/zend/order090/src/upload/multimedia/admin/2010/05/4bf61092b0357.png', NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 09:16:30', NULL, 1),
+(18, 5, 'supplier04', 'supplier04', NULL, 'De Lind 9 5061 HS Oisterwijk The Netherlands', '09090909', 'supplier04@yahoo.com', '09:00', '24:00', NULL, NULL, NULL, NULL, NULL, NULL, 'http://localhost.com:8080/zend/order090/src/upload/multimedia/admin/2010/05/4bf764a0a5639.png', NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 10:38:21', NULL, 1),
+(19, 7, 'supplier03', 'supplier03', NULL, '12331 Jaguar Drive Stafford TX 77477', '090909090', 'supplier03@yahoo.com', '08:00', '22:00', NULL, NULL, NULL, NULL, NULL, NULL, 'http://localhost.com:8080/zend/order090/src/upload/multimedia/admin/2010/05/4bf60cc77ed9a.png', NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 10:39:54', NULL, 1),
+(20, 7, 'supplier01', 'supplier01', NULL, 'Heiligenboom 20 5066 CB Moergestel The Netherlands', '0903684987', 'vinhbk2000@yahoo.com', '10:00', '22:00', NULL, NULL, NULL, NULL, NULL, NULL, 'http://localhost.com:8080/zend/order090/src/upload/multimedia/admin/2010/05/4bf610f232605.png', NULL, NULL, NULL, NULL, 1, NULL, '2010-05-21 11:49:55', NULL, 1);
 
 -- --------------------------------------------------------
 

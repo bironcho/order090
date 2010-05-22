@@ -1,5 +1,7 @@
 <?php 
 $this->headTitle($this->translator('supplier_view_page_title'));
+$this->headScript()->appendFile($this->APP_STATIC_SERVER.'/js/jquery.gmap/jquery.gmap-1.1.0-min.js');
+$this->headScript()->appendFile('http://maps.google.com/maps?file=api&v=2&sensor=false&key=ABQIAAAAvlmoowsHC7cTyLLhx4zksRT8PMUw5z7_OLJoE1lh2VQyfb-WOxSwE2u6G1lPiDL0SppAo83icfd6Cg');
 ?>
 <div class="grid_12"><?php echo $this->flashMessenger(); ?></div>
 <div class="grid_12">
@@ -22,7 +24,7 @@ $this->headTitle($this->translator('supplier_view_page_title'));
 	<div class="clearfix t_a_bottom">
 		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_address'); ?>:</label></div>
 		<div class="grid_5 omega"><?php if ($this->supplier != null) : ?><?php echo $this->supplier->address; ?><?php endif; ?></div>
-	</div>
+	
 	<div class="clearfix t_a_bottom">
 		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_phone'); ?>:</label></div>
 		<div class="grid_5 omega"><?php if ($this->supplier != null) : ?><?php echo $this->supplier->phone; ?><?php endif; ?></div>
@@ -39,5 +41,34 @@ $this->headTitle($this->translator('supplier_view_page_title'));
 		<div class="grid_2 alpha"><label><?php echo $this->translator('supplier_hour_close'); ?>:</label></div>
 		<div class="grid_5 omega"><?php if ($this->supplier != null) : ?><?php echo $this->supplier->hour_close; ?><?php endif; ?></div>
 	</div>
+	<div class="clearfix t_a_bottom">
+		<div id="map" style="height:300px"></div></div>
+	</div>
 	</div>
 </div>
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+		
+		$("#map").gMap({ 
+		
+				  controls: true,
+                  scrollwheel: true,
+				  markers: [{ 
+							  address: "<?php echo $this->supplier->address; ?>",
+                              popup: true }],
+                  zoom: 15,
+				  icon:
+					{
+						image:				"http://www.google.com/mapfiles/marker.png",
+						shadow:				"http://www.google.com/mapfiles/shadow50.png",
+						iconsize:			[20, 34],
+						shadowsize:			[37, 34],
+						iconanchor:			[9, 34],
+						infowindowanchor:	[9, 2]
+						
+					}
+				  
+				  });
+	});
+</script>
+

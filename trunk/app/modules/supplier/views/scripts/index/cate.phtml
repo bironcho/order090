@@ -9,7 +9,7 @@
 			<ul>
 			<?php foreach ($this->suppliers as $index => $supplier) : ?>
 			<li>
-				<strong><?php echo $supplier->name; ?></strong>
+				<a href="<?php echo $this->url($supplier->getProperties(), 'supplier_index_view'); ?>"><strong><?php echo $supplier->name; ?></strong></a>
 			</li>
 			<?php endforeach; ?>
 			</ul>
